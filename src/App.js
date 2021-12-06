@@ -26,7 +26,12 @@ function App() {
    }, [searchQuery]);
 
    const handleSearch = () => {
-      setSearchQuery(searchTerm);
+      if (searchTerm.trim()) {
+         setSearchQuery(searchTerm);
+      } else {
+         setSearchQuery(searchTerm);
+         alert('Empty Search! Please type something in the search field');
+      }
       setSearchTerm('');
    };
    return (
@@ -44,6 +49,11 @@ function App() {
                      placeholder="Search for images..."
                      value={searchTerm}
                      onChange={e => setSearchTerm(e.target.value)}
+                     onKeyPress={event => {
+                        if (event.key === 'Enter') {
+                           handleSearch();
+                        }
+                     }}
                   />
                   <button
                      className="btn search-button btn-danger"
@@ -55,7 +65,7 @@ function App() {
             </div>
             <div className="container mt-5">
                <div className="row">
-                  <DisplayImages data={data} />
+                  <DisplayImages data={data} searchQuery={searchQuery} />
                </div>
             </div>
          </div>
