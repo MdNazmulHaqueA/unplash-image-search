@@ -1,0 +1,10 @@
+/* Search bar */
+.search-box {
+   position: relative;
+}
+.search-button {
+   position: absolute;
+   top: 0;
+   right: 0;
+   height: 100%;
+}
